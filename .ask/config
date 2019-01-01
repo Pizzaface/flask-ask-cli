@@ -1,0 +1,22 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "",
+      "resources": {
+        "lambda": [
+          {
+            "functionName": "",
+            "codeUri": "lambda/custom",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "runtime": "python3.6",
+            "handler": "skill.lambda_handler"
+          }
+        ]
+      },
+      "was_cloned": false,
+      "merge": {}
+    }
+  }
+}

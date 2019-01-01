@@ -1,0 +1,17 @@
+welcome: |
+  My Flask-Ask skill.
+
+welcome_re: |
+  My Flask-Ask skill. How may I help you?
+
+welcome_card: |
+  My Flask-Ask skill is an Alexa skill written by Your Name. An Alexa Skill to do some amazing stuff.
+
+stop_bye: |
+  Goodbye!
+
+cancel_bye: |
+  OK, goodbye!
+
+help_text: |
+  My Flask-Ask skill is an Alexa skill that does things. This is where the developer would normally explain how to do them.
