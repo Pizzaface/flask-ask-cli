@@ -1,19 +1,16 @@
 # coding=utf-8
 
-# My Flask-Ask skill
-# By Your Name <your@email-address.io>
-#
-# An Alexa Skill to do some amazing stuff.
-
 import logging
 from datetime import datetime
 from flask import Flask, json, render_template
 from flask_ask import Ask, request, session, question, statement
+<<IMPORTS>>
 
-__author__ = 'Your Name'
-__email__ = 'your@email-address.io'
+__author__ = 'Jordan Pizza'
+__email__ = 'sales@speakeasier.com'
 
-
+app = Flask(__name__)
+ask = Ask(app, '/')
 logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 # Session starter
@@ -142,11 +139,5 @@ def session_ended():
 	"""
 	return statement("")
 
-
-if __name__ == '__main__':
-	app.run(debug=True)
-
 def lambda_handler(event, _context):
-	app = Flask(__name__)
-	ask = Ask(app, '/')
 	return ask.run_aws_lambda(event)
