@@ -1,5 +1,5 @@
 {
-    "Alexa Python Boilerplate": {
-        "gitUrl": "https://github.com/Pizzaface/alexa-development-boilerplate.git"
+    "Alexa Flask-Ask CLI": {
+        "gitUrl": "https://github.com/Pizzaface/flask-ask-cli.git"
     }
 }
