@@ -163,7 +163,7 @@ def lambda_handler(event, _context):
 		dialog_state = ask.session.dialogState
 		logger.info(dialog_state)
 		if dialog_state != "COMPLETED":
-			return delegate()
+			delegate()
 		
 
 		global route
