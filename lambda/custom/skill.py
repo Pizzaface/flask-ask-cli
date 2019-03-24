@@ -162,7 +162,12 @@ def lambda_handler(event, _context):
 	logger.info(json.dumps(event))
 	if event_type == "IntentRequest":
 		intent_name = event['request']['intent']['name']
-	
+
+		dialog_state = ask.session.dialogState
+		logger.info(dialog_state)
+		if dialog_state != "COMPLETED":
+			return delegate()
+		
 
 		global route
 
@@ -182,7 +187,7 @@ def lambda_handler(event, _context):
 		if not intent_name in dontRoute:
 			dialog_state = ask.session.dialogState
 			if dialog_state != "COMPLETED":
-				return delegate()
+				delegate()
 
 			if "originalIntentName" in event['session']['attributes']:
 				del event['session']['attributes']['originalIntentName']
