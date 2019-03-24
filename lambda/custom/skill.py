@@ -3,7 +3,7 @@
 import logging
 from datetime import datetime
 from flask import Flask, json, render_template
-from flask_ask import Ask, request, session, question, statement
+from flask_ask import Ask, request, session, question, statement, context, delegate
 <<IMPORTS>>
 
 __author__ = 'Jordan Pizza'
