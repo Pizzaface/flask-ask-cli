@@ -4,7 +4,6 @@ import logging
 from datetime import datetime
 from flask import Flask, json, render_template
 from flask_ask import Ask, request, session, question, statement, context, delegate
-import warnings
 <<IMPORTS>>
 
 __author__ = 'Jordan Pizza'
@@ -142,8 +141,6 @@ def session_ended():
 
 def lambda_handler(event, _context):
 	event_type = event['request']['type']
-
-	warnings.filterwarnings("ignore")
 
 	global logger
 	logger = logging.getLogger("flask_ask")
