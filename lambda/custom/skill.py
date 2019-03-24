@@ -182,7 +182,7 @@ def lambda_handler(event, _context):
 		if not intent_name in dontRoute:
 			dialog_state = ask.session.dialogState
 			if dialog_state != "COMPLETED":
-				return delegate()
+				return delegate(speech=None)
 
 			if "originalIntentName" in event['session']['attributes']:
 				del event['session']['attributes']['originalIntentName']
