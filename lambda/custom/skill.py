@@ -140,4 +140,58 @@ def session_ended():
 	return statement("")
 
 def lambda_handler(event, _context):
+	event_type = event['request']['type']
+
+	global logger
+	logger = logging.getLogger("flask_ask")
+
+	# Gets our API Endpoint and the API Access Token so we can get location
+	global apiAccessToken
+	global apiEndpoint
+	try:
+		apiAccessToken = event['context']['System']['apiAccessToken']
+		apiEndpoint = event['context']['System']['apiEndpoint']
+	except KeyError:
+		# We need their permission to access their information
+		print("Problem with Device Authorization")
+		return requestUserInfo()
+
+	logger.info(json.dumps(event))
+	if event_type == "IntentRequest":
+		intent_name = event['request']['intent']['name']
+
+		global route
+
+		if not "attributes" in event['session']:
+			route = None
+			event['session']['attributes'] = {}
+			logger.info("No Route")
+		else:
+			if "route" in event['session']['attributes']:
+				route = event['session']['attributes']["route"]
+				logger.info("User Requested Route: %s" % (route))
+			else:
+				route = None
+
+
+		dontRoute = ["AMAZON.StopIntent", "AMAZON.CancelIntent"]
+		if not intent_name in dontRoute:
+			dialog_state = ask.session.dialogState
+			if dialog_state != "COMPLETED":
+				delegate()
+
+			if "originalIntentName" in event['session']['attributes']:
+				del event['session']['attributes']['originalIntentName']
+
+			<<ROUTING>>
+
+			if intent_name == "AMAZON.FallbackIntent" and route == None:
+				return question("Sorry, I didn't understand that. Would you like to learn about revenue marketing, Hear the latest blog, or contact TPG directly?")
+
+			event['session']['attributes']['originalIntentName'] = intent_name
+
+		logger.info("Routing to %s" % event['request']['intent']['name'])
+
+
+	
 	return ask.run_aws_lambda(event)
