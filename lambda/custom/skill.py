@@ -161,11 +161,10 @@ def lambda_handler(event, _context):
 		intent_name = event['request']['intent']['name']
 
 		dialog_state = ask.session.dialogState
-		logger.info(dialog_state)
 		if dialog_state != "COMPLETED":
 			delegate()
 		
-
+		
 		global route
 
 		if not "attributes" in event['session']:
