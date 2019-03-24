@@ -181,7 +181,6 @@ def lambda_handler(event, _context):
 		dontRoute = ["AMAZON.StopIntent", "AMAZON.CancelIntent"]
 		if not intent_name in dontRoute:
 			dialog_state = event['request']["dialogState"]
-			print(dialog_state)
 			if dialog_state != "COMPLETED":
 				return delegate(speech=None)
 
