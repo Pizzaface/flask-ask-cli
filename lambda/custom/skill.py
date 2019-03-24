@@ -160,11 +160,6 @@ def lambda_handler(event, _context):
 	if event_type == "IntentRequest":
 		intent_name = event['request']['intent']['name']
 
-		dialog_state = ask.session.dialogState
-		if dialog_state != "COMPLETED":
-			delegate()
-		
-		
 		global route
 
 		if not "attributes" in event['session']:
